@@ -1,7 +1,7 @@
-import {Body, Controller, Delete, Get, HttpStatus, Patch, Post, Req, Res} from '@nestjs/common';
+import {Body, Controller, Delete, Get, HttpStatus, Param, Patch, Post, Req, Res} from '@nestjs/common';
 import {CreateUserDto} from "./dto/users.dto";
 import {UsersService} from "./users.service";
-import {ApiTags} from "@nestjs/swagger";
+import {ApiParam, ApiTags} from "@nestjs/swagger";
 
 @ApiTags('Users')
 @Controller('users')
@@ -32,8 +32,13 @@ export class UsersController {
 
     }
 
-    @Patch('/:id')
-    async updateUser(){
+    @ApiParam({ name: 'id', required: true })
+    @Patch('/:userId')
+    async updateUser(
+        @Req() req: any,
+        @Res() res: any,
+        @Param('userId') userId: any,
+    ){
 
     }
 
