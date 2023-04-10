@@ -27,9 +27,14 @@ export class UsersController {
         return res.status(HttpStatus.CREATED).json(await this.userService.createUser(body));
     }
 
-    @Delete('/:id')
-    async deleteUser() {
-
+    @Delete('/:userId')
+    async deleteUser(
+        @Req() req: any,
+        @Res() res: any,
+        @Param('userId') userId: any,
+    ) {
+        console.log(userId);
+        return res.status(HttpStatus.OK).json(await this.userService.deleteUser(userId))
     }
 
     @ApiParam({ name: 'id', required: true })
