@@ -31,7 +31,7 @@ export class UsersController {
     async deleteUser(
         @Req() req: any,
         @Res() res: any,
-        @Param('userId') userId: any,
+        @Param('userId') userId: string,
     ) {
         console.log(userId);
         return res.status(HttpStatus.OK).json(await this.userService.deleteUser(userId))
