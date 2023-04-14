@@ -33,6 +33,9 @@ export class CreateUserDto {
   @IsBoolean()
   @IsOptional()
   status: boolean;
+
+  @ApiProperty()
+  avatar: string;
 }
 
 // name, age, email, city, status
