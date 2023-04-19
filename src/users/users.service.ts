@@ -50,4 +50,10 @@ export class UsersService {
     // //slice на вибір
     // return this.users;
   }
+
+  async findByUsername(userEmail: string) {
+    return this.prismaService.user.findFirst({
+      where: { email: userEmail },
+    });
+  }
 }

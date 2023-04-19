@@ -11,14 +11,15 @@ datasource db {
 }
 
 model User {
-  id     Int      @id @default(autoincrement()) // uuid
-  email  String   @unique
-  name   String?
-  city   String?
-  age    Int?
-  avatar String?
-  status Boolean? @default(false)
-  pets   Pets[]
+  id       Int      @id @default(autoincrement()) // uuid
+  email    String   @unique
+  name     String?
+  city     String?
+  age      Int?
+  avatar   String?
+  password String?
+  status   Boolean? @default(false)
+  pets     Pets[]
 }
 
 model Pets {

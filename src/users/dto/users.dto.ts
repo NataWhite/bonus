@@ -1,10 +1,12 @@
 import {
   IsBoolean,
   IsEmail,
+  IsEnum,
   IsNotEmpty,
   IsNumber,
   IsOptional,
   IsString,
+  Matches,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
@@ -22,11 +24,13 @@ export class CreateUserDto {
   @ApiProperty({ required: true, example: 'user@mail.com' })
   @IsString()
   @IsEmail()
+  // @Matches('')
   @IsNotEmpty()
   email: string;
 
   @ApiProperty()
   @IsString()
+  // @IsEnum(CityEnum)
   city: string;
 
   @ApiProperty()
