@@ -9,7 +9,8 @@ import { PrismaModule } from './core/orm/prisma.module';
 import { ServeStaticModule } from '@nestjs/serve-static/dist/serve-static.module';
 import { join } from 'path';
 import { AuthModule } from './auth/auth.module';
-import {AuthController} from "./auth/auth.controller";
+import { AuthController } from './auth/auth.controller';
+import { PassportWrapperModule } from './auth/passport-wrapper.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import {AuthController} from "./auth/auth.controller";
     PetsModule,
     PrismaModule,
     AuthModule,
+    PassportWrapperModule,
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'public'),
     }),

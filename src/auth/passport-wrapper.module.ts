@@ -1,14 +1,16 @@
-import { Module } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { UsersModule } from '../users/users.module';
+import { Global, Module } from '@nestjs/common';
 import { PassportModule } from '@nestjs/passport';
+import { JwtModule, JwtService } from '@nestjs/jwt';
 import { BearerStrategy } from './bearer.strategy';
 import { UsersService } from '../users/users.service';
-import { JwtModule } from '@nestjs/jwt';
+import { UsersModule } from '../users/users.module';
+import { AuthModule } from './auth.module';
 
+@Global()
 @Module({
   imports: [
     UsersModule,
+    AuthModule,
     PassportModule.register({ defaultStrategy: 'bearer' }),
     JwtModule.registerAsync({
       useFactory: async () => ({
@@ -19,7 +21,7 @@ import { JwtModule } from '@nestjs/jwt';
       }),
     }),
   ],
-  providers: [AuthService, BearerStrategy, UsersService],
-  exports: [AuthService],
+  providers: [BearerStrategy, UsersService, JwtService],
+  exports: [PassportModule],
 })
-export class AuthModule {}
+export class PassportWrapperModule {}
