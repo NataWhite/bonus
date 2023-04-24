@@ -21,7 +21,7 @@ import { AuthModule } from './auth.module';
       }),
     }),
   ],
-  providers: [BearerStrategy, UsersService, JwtService],
+  providers: [BearerStrategy, UsersService],
   exports: [PassportModule],
 })
 export class PassportWrapperModule {}

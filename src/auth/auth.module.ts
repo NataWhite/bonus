@@ -5,10 +5,13 @@ import { PassportModule } from '@nestjs/passport';
 import { BearerStrategy } from './bearer.strategy';
 import { UsersService } from '../users/users.service';
 import { JwtModule } from '@nestjs/jwt';
+import {CoreModule} from "../core/core.module";
+import {MailService} from "../core/mail/mail.service";
 
 @Module({
   imports: [
     UsersModule,
+      CoreModule,
     PassportModule.register({ defaultStrategy: 'bearer' }),
     JwtModule.registerAsync({
       useFactory: async () => ({
@@ -19,7 +22,7 @@ import { JwtModule } from '@nestjs/jwt';
       }),
     }),
   ],
-  providers: [AuthService, BearerStrategy, UsersService],
+  providers: [AuthService, BearerStrategy, UsersService, MailService],
   exports: [AuthService],
 })
 export class AuthModule {}
